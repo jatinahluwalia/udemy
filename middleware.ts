@@ -1,6 +1,11 @@
-import { authMiddleware } from '@clerk/nextjs';
+import { clerkMiddleware } from '@clerk/nextjs/server';
 
-export default authMiddleware({});
+export default clerkMiddleware((auth, req) => {
+  if (
+    !['/api/uploadthing', '/sign-in', '/sign-up'].includes(req.nextUrl.pathname)
+  )
+    auth().protect();
+});
 
 export const config = {
   matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],

@@ -1,7 +1,7 @@
 import { SignIn } from '@clerk/nextjs';
 
 const Page = () => {
-  return <SignIn />;
+  return <SignIn routing="hash" fallbackRedirectUrl={'/'} />;
 };
 
 export default Page;

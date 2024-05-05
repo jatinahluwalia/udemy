@@ -1,15 +1,16 @@
 {
+  "plugins": ["tailwindcss"],
   "extends": [
     "next/core-web-vitals",
-    "standard",
+    "plugin:tailwindcss/recommended",
     "prettier",
-    "plugin:tailwindcss/recommended"
+    "standard"
   ],
-  "plugins": ["tailwindcss"],
   "rules": {
     "semi": "off",
     "space-before-function-paren": "off",
     "comma-dangle": "off",
-    "multiline-ternary": "off"
+    "multiline-ternary": "off",
+    "indent": "off"
   }
 }
