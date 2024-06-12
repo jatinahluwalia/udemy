@@ -55,7 +55,7 @@ const CategoryForm = ({
 
   const onSubmit = async (values: FormSchema) => {
     try {
-      await updateCourse({ _id: courseId, ...values });
+      await updateCourse({ courseId, ...values });
       await addCourse({ ...values, courseId });
       toast.success('Course updated');
       toggleEdit();

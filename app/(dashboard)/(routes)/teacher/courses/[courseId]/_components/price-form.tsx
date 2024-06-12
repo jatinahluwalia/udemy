@@ -50,7 +50,7 @@ const PriceForm = ({ courseId, initialData }: PriceFormProps) => {
 
   const onSubmit = async (values: FormSchema) => {
     try {
-      await updateCourse({ _id: courseId, ...values });
+      await updateCourse({ courseId, ...values });
       toast.success('Course updated');
       toggleEdit();
       router.refresh();

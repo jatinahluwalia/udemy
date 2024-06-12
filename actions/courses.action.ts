@@ -121,9 +121,9 @@ export const createCourse = async ({ title }: CreateCourse) => {
 };
 
 export const updateCourse = async ({
-  _id: courseId,
+  courseId,
   ...values
-}: Partial<ICourse>) => {
+}: Partial<ICourse> & { courseId: string }) => {
   try {
     connectToDB();
     const { userId } = auth();

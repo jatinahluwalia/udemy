@@ -48,7 +48,7 @@ const TitleForm = ({ courseId, initialData }: TitleFormProps) => {
 
   const onSubmit = async (values: FormSchema) => {
     try {
-      await updateCourse({ ...values, _id: courseId });
+      await updateCourse({ courseId, ...values });
       toast.success('Course updated');
       toggleEdit();
       router.refresh();
