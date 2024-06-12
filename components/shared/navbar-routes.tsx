@@ -1,35 +1,47 @@
 'use client';
 
 import { UserButton } from '@clerk/nextjs';
-import { usePathname } from 'next/navigation';
-import React from 'react';
-import { Button } from '../ui/button';
 import { LogOut } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Button } from '../ui/button';
+import SearchInput from './search-input';
 
 const NavbarRoutes = () => {
   const pathname = usePathname();
 
   const isTeacherPage = pathname?.startsWith('/teacher');
-  const isPlayerPage = pathname?.includes('/chapter');
+  const isCoursePage = pathname?.includes('/course');
+  const isSearchPage = pathname === '/search';
+
+  // const { userId } = useAuth();
+
   return (
-    <div className="ml-auto flex gap-2">
-      {isTeacherPage || isPlayerPage ? (
-        <Link href="/">
-          <Button>
-            <LogOut className="mr-2 size-4" />
-            Exit
-          </Button>
-        </Link>
-      ) : (
-        <Link href={'/teacher/courses'}>
-          <Button size={'sm'} variant={'ghost'}>
-            Teacher mode
-          </Button>{' '}
-        </Link>
+    <>
+      {isSearchPage && (
+        <div className="hidden md:block">
+          <SearchInput />
+        </div>
       )}
-      <UserButton afterSignOutUrl="" />
-    </div>
+      <div className="ml-auto flex gap-2">
+        {isTeacherPage || isCoursePage ? (
+          <Link href="/">
+            <Button>
+              <LogOut className="mr-2 size-4" />
+              Exit
+            </Button>
+          </Link>
+        ) : (
+          // isTeacher(userId) &&
+          <Link href={'/teacher/courses'}>
+            <Button size={'sm'} variant={'ghost'}>
+              Teacher mode
+            </Button>
+          </Link>
+        )}
+        <UserButton afterSignOutUrl="" />
+      </div>
+    </>
   );
 };
 

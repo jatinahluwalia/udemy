@@ -1,4 +1,4 @@
-import Category from '@/lib/models/catgeory.model';
+import Category from '@/lib/models/category.model';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const GET = async (req: NextRequest) => {

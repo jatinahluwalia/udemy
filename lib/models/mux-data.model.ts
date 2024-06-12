@@ -1,10 +1,10 @@
 import {
-  models,
-  Document,
-  model,
-  Model,
+  HydratedDocument,
   InferSchemaType,
+  Model,
   Schema,
+  model,
+  models,
 } from 'mongoose';
 const muxDataSchema = new Schema({
   chapterId: {
@@ -20,7 +20,7 @@ const muxDataSchema = new Schema({
   playbackId: String,
 });
 
-export type IMuxData = Document & InferSchemaType<typeof muxDataSchema>;
+export type IMuxData = HydratedDocument<InferSchemaType<typeof muxDataSchema>>;
 
 const MuxData: Model<IMuxData> =
   models?.MuxData || model('MuxData', muxDataSchema, 'muxdata');

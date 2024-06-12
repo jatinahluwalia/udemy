@@ -1,5 +1,5 @@
 import {
-  Document,
+  HydratedDocument,
   InferSchemaType,
   Model,
   Schema,
@@ -28,7 +28,9 @@ const userProgessSchema = new Schema(
 
 userProgessSchema.index({ userId: 1, chapterId: 1 }, { unique: true });
 
-type IUserProgress = Document & InferSchemaType<typeof userProgessSchema>;
+export type IUserProgress = HydratedDocument<
+  InferSchemaType<typeof userProgessSchema>
+>;
 
 const UserProgress: Model<IUserProgress> =
   models?.UserProgress ||

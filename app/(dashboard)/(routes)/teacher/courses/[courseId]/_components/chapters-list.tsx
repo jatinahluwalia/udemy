@@ -17,6 +17,7 @@ interface ChapterListProps {
     items: { id: string; position: number }[];
     courseId: string;
   }) => void;
+  onEdit: (id: string) => void;
 }
 
 export type ConvertedChapter = Omit<IChapter, 'id'> & { id: string };
@@ -24,7 +25,12 @@ export type ConvertedChapter = Omit<IChapter, 'id'> & { id: string };
 const converter = (items: IChapter[]): any =>
   items.map((chapter) => ({ ...chapter, id: `${chapter._id}` }));
 
-const ChaptersList = ({ items, courseId, onReorder }: ChapterListProps) => {
+const ChaptersList = ({
+  items,
+  courseId,
+  onReorder,
+  onEdit,
+}: ChapterListProps) => {
   const [chapters, setChapters] = useState<ConvertedChapter[]>(
     converter(items),
   );
@@ -56,7 +62,11 @@ const ChaptersList = ({ items, courseId, onReorder }: ChapterListProps) => {
           strategy={verticalListSortingStrategy}
         >
           {chapters.map((chapter, i) => (
-            <DraggableChapter key={`${chapter._id}`} chapter={chapter} />
+            <DraggableChapter
+              key={`${chapter._id}`}
+              chapter={chapter}
+              onEdit={onEdit}
+            />
           ))}
         </SortableContext>
       </div>

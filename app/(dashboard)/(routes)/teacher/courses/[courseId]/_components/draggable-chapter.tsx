@@ -10,9 +10,10 @@ import { CSS } from '@dnd-kit/utilities';
 
 interface DraggableChapterProps {
   chapter: ConvertedChapter;
+  onEdit: (id: string) => void;
 }
 
-const DraggableChapter = ({ chapter }: DraggableChapterProps) => {
+const DraggableChapter = ({ chapter, onEdit }: DraggableChapterProps) => {
   const { attributes, setNodeRef, listeners, transform, transition } =
     useSortable({ id: chapter.id });
   const style = {
@@ -48,7 +49,7 @@ const DraggableChapter = ({ chapter }: DraggableChapterProps) => {
         </Badge>
         <Pencil
           onClick={() => {
-            //   onEdit(String(chapter._id));
+            onEdit(String(chapter._id));
           }}
           className="size-4 cursor-pointer transition hover:opacity-75"
         />

@@ -1,5 +1,5 @@
 import {
-  Document,
+  HydratedDocument,
   InferSchemaType,
   Model,
   Schema,
@@ -23,7 +23,9 @@ const stripeCustomerSchema = new Schema(
   { timestamps: true },
 );
 
-type IStripeCustomer = Document & InferSchemaType<typeof stripeCustomerSchema>;
+type IStripeCustomer = HydratedDocument<
+  InferSchemaType<typeof stripeCustomerSchema>
+>;
 
 const StripeCustomer: Model<IStripeCustomer> =
   models?.StripeCustomer ||

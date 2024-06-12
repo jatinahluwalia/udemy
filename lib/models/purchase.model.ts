@@ -1,5 +1,5 @@
 import {
-  Document,
+  HydratedDocument,
   InferSchemaType,
   Model,
   Schema,
@@ -22,7 +22,9 @@ const purchaseSchema = new Schema(
   { timestamps: true },
 );
 
-type IPurchase = Document & InferSchemaType<typeof purchaseSchema>;
+export type IPurchase = HydratedDocument<
+  InferSchemaType<typeof purchaseSchema>
+>;
 
 const Purchase: Model<IPurchase> =
   models?.Purchase || model('Purchase', purchaseSchema, 'purchases');

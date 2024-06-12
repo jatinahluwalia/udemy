@@ -1,10 +1,10 @@
 import {
+  HydratedDocument,
+  InferSchemaType,
   Schema,
   model,
-  InferSchemaType,
-  type Model,
-  type Document,
   models,
+  type Model,
 } from 'mongoose';
 
 const courseSchema = new Schema(
@@ -58,7 +58,7 @@ const courseSchema = new Schema(
   { timestamps: true },
 );
 
-export type ICourse = Document & InferSchemaType<typeof courseSchema>;
+export type ICourse = HydratedDocument<InferSchemaType<typeof courseSchema>>;
 
 export const Course: Model<ICourse> =
   models?.Course || model('Course', courseSchema, 'courses');

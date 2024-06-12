@@ -1,9 +1,9 @@
 import {
-  model,
-  Schema,
-  Document,
+  HydratedDocument,
   InferSchemaType,
   Model,
+  Schema,
+  model,
   models,
 } from 'mongoose';
 
@@ -23,7 +23,9 @@ const attachmentSchema = new Schema(
   { timestamps: true },
 );
 
-export type IAttachment = Document & InferSchemaType<typeof attachmentSchema>;
+export type IAttachment = HydratedDocument<
+  InferSchemaType<typeof attachmentSchema>
+>;
 
 export const Attachment: Model<IAttachment> =
   models?.Attachment || model('Attachment', attachmentSchema, 'attachments');

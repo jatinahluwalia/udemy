@@ -1,9 +1,9 @@
 import {
-  Document,
-  model,
-  Model,
+  HydratedDocument,
   InferSchemaType,
+  Model,
   Schema,
+  model,
   models,
 } from 'mongoose';
 
@@ -43,7 +43,7 @@ const chapterSchema = new Schema(
   { timestamps: true },
 );
 
-export type IChapter = Document & InferSchemaType<typeof chapterSchema>;
+export type IChapter = HydratedDocument<InferSchemaType<typeof chapterSchema>>;
 
 const Chapter: Model<IChapter> =
   models?.Chapter || model('Chapter', chapterSchema, 'chapters');
